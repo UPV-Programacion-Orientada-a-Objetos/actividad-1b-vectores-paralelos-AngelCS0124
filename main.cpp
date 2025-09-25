@@ -56,9 +56,9 @@ del usuario. */
 
 int mostrarMenu(){
     int opcion = 0;
-    bool inputValido = false;
+    bool input_valido = false;
     
-    while (!inputValido || opcion < 1 || opcion > 5){
+    while (!input_valido || opcion < 1 || opcion > 5){
         std::cout << "--- Ferreteria 'El Martillo' ---" << std::endl;
         std::cout << "1. Consultar un producto" << std::endl;
         std::cout << "2. Actualizar inventario" << std::endl;
@@ -69,7 +69,7 @@ int mostrarMenu(){
         std::cout << "Digite una opcion: ";
 
         if (std::cin >> opcion){
-            inputValido = true;
+            input_valido = true;
 
             std::cout << "\n";
 
@@ -81,7 +81,7 @@ int mostrarMenu(){
             std::cin.ignore(10000, '\n');
             std::cout << "\n";
             std::cout << "ERROR: Por favor, ingrese un numero entero valido." << std::endl;
-            inputValido = false;
+            input_valido = false;
         }
     }
 
@@ -100,12 +100,12 @@ el código. */
 void consultarProducto(int codigos[], std::string nombres[], int stock[], float precios[], int tam){
     float encontrado = false;
     int indice_encontrado, codigo_a_buscar;
-    bool inputValido = false;
+    bool input_valido = false;
     
     std::cout << "Ingrese el codigo del producto a consultar: ";
 
     if (std::cin >> codigo_a_buscar){
-        inputValido = true;
+        input_valido = true;
 
         std::cout << "\n";
     } else {
@@ -113,10 +113,10 @@ void consultarProducto(int codigos[], std::string nombres[], int stock[], float 
         std::cin.ignore(10000, '\n');
         std::cout << "\n";
         std::cout << "ERROR: Por favor, ingrese un codigo numerico valido." << std::endl;
-        inputValido = false;
+        input_valido = false;
     }
 
-    if (inputValido) {
+    if (input_valido) {
         for (int i = 0; i < tam; i++){
             if (codigo_a_buscar == codigos[i]) {
                 encontrado = true;
@@ -153,12 +153,12 @@ se actualice a un valor válido se aplica a el array stock en el indice encontra
 void actualizarStock(int codigos[], std::string nombres[], int stock[], int tam){
     float encontrado = false;
     int indice_encontrado, cant_p_actualizar, codigo_a_buscar;
-    bool inputValido = false;
+    bool input_valido = false;
 
     std::cout << "Ingrese el codigo del producto al que actualizara el stock: ";
     
     if (std::cin >> codigo_a_buscar){
-        inputValido = true;
+        input_valido = true;
 
         std::cout << "\n";
     } else {
@@ -166,10 +166,10 @@ void actualizarStock(int codigos[], std::string nombres[], int stock[], int tam)
         std::cin.ignore(10000, '\n');
         std::cout << "\n";
         std::cout << "ERROR: Por favor, ingrese un codigo numerico valido." << std::endl;
-        inputValido = false;
+        input_valido = false;
     }
 
-    if (inputValido) {
+    if (input_valido) {
         for (int i = 0; i < tam; i++){
             if (codigo_a_buscar == codigos[i]) {
                 encontrado = true;
@@ -180,20 +180,20 @@ void actualizarStock(int codigos[], std::string nombres[], int stock[], int tam)
     
         std::cout << "\n";
 
-        inputValido = false;
+        input_valido = false;
 
         if (!encontrado){
             std::cout << "ERROR: No existe un producto con este codigo." << std::endl;
         } else {
             cant_p_actualizar = ((stock[indice_encontrado])*(-1)) - 1;
 
-            while ((stock[indice_encontrado] + cant_p_actualizar) < 0 || !inputValido) {
+            while ((stock[indice_encontrado] + cant_p_actualizar) < 0 || !input_valido) {
                 std::cout << "Producto: " << nombres[indice_encontrado] << std::endl;
                 std::cout << "Stock actual del producto: " << stock[indice_encontrado] << std::endl;
                 std::cout << "Ingrese una cantidad para actualizar el stock (positiva para sumar y negativa para restar): ";
 
                 if (std::cin >> cant_p_actualizar){
-                    inputValido = true;
+                    input_valido = true;
 
                     std::cout << "\n";
                 } else {
@@ -201,10 +201,10 @@ void actualizarStock(int codigos[], std::string nombres[], int stock[], int tam)
                     std::cin.ignore(10000, '\n');
                     std::cout << "\n";
                     std::cout << "ERROR: Por favor, ingrese un valor numerico valido." << std::endl;
-                    inputValido = false;
+                    input_valido = false;
                 }
 
-                if (inputValido) {
+                if (input_valido) {
                     if ((stock[indice_encontrado] + cant_p_actualizar) < 0) {
                         std::cout << "ERROR: El stock del producto no puede ser menor a 0." << std::endl;
                     }
